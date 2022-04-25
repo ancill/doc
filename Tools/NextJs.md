@@ -62,3 +62,51 @@ additional eslint types
 
 ### React
 ![](2022-04-13-15-41-00.png)
+
+
+
+
+### SVG for next.js 12
+To embed the contents of an SVG file into your site using NextJS 12 with the new Rust-based compiler, perform the following steps:
+
+1. Install `@svg/webpack`:
+
+```sh
+$ npm install --save-dev @svgr/webpack
+```
+
+2. Create a `svgr.config.js` config file with the following contents. This will remove the width and height from the SVG but keep the viewBox for correct scaling.
+
+```js
+module.exports = {
+  dimensions: false,
+};
+```
+
+4. Add to your webpack config in `next.config.js`
+```js
+module.exports = {
+  webpack(config) {
+    const fileLoaderRule = config.module.rules.find(
+      (rule) => rule.test && rule.test.test('.svg'),
+    );
+    fileLoaderRule.exclude = /\.svg$/;
+    config.module.rules.push({
+      test: /\.svg$/,
+      loader: require.resolve('@svgr/webpack'),
+    });
+    return config;
+  },
+};
+```
+
+
+4. Import SVG into component
+```js
+import Logo from 'public/images/logo.svg';
+```
+
+5. Use the Component
+```js
+<Logo className="h-8 w-auto sm:h-10" alt="Site Title" />
+```
