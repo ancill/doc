@@ -7,7 +7,7 @@
         "id": "91bea67783800e83",
         "type": "leaf",
         "state": {
-          "type": "empty",
+          "type": "graph",
           "state": {}
         }
       }
@@ -83,5 +83,7 @@
     "collapsed": true
   },
   "active": "91bea67783800e83",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Docker.md"
+  ]
 }
